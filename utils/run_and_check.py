@@ -24,8 +24,6 @@ current_directory = os.path.dirname(current_directory)
 
 def run_and_validate(file_path, input_dir, output_dir):
     file_ext = os.path.splitext(file_path)[-1]
-    program = None
-
     if file_ext == ".py":
         program = ["python", file_path]
     elif file_ext == ".cpp":

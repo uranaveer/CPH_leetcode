@@ -90,6 +90,11 @@ async function run_test_cases(webviewView) {
             }
 
             try {
+                const output = stdout.toString();
+                if(output[0]=='C' || output[0]=='U'){
+                    vscode.window.showErrorMessage(output);
+                    return;
+                }
                 const results = JSON.parse(stdout.toString());
             
 
@@ -133,6 +138,11 @@ async function run_test_cases_command(webviewView) {
             }
 
             try {
+                const output = stdout.toString();
+                if(output[0]=='C' || output[0]=='U'){
+                    vscode.window.showErrorMessage(output);
+                    return;
+                }
                 const results = JSON.parse(stdout.toString());
                 
                 results.forEach((item,index)=>{
@@ -140,7 +150,7 @@ async function run_test_cases_command(webviewView) {
                         vscode.window.showInformationMessage(`Test Case ${index+1} Passed!`)
                     }
                     else{
-                        vscode.window.showInformationMessage(`Test Case ${index+1} Failed!`)
+                        vscode.window.showInformationMessage(`Test Case ${index+1} Failed! ${item.user_output}`);
                     }
                 })
 
