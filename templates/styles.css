@@ -1,0 +1,155 @@
+
+
+.function_button{
+    background-color: #9cd3d9;
+    padding: 5px;
+    border-radius: 10px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+#url{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;  
+}
+
+
+.input_element{
+    border: 2px solid;
+    border-radius: 5px;
+    height: 30px;
+    font-size: medium;
+}
+
+#lang_in{
+    width: 100px;
+}
+#create_template{
+    margin-top: 10px;
+    width: 300px;
+}
+
+.case:hover{
+    background-color:#f2e9e4;
+    cursor: pointer;
+}
+
+.user_output{
+    margin-top: 10px;
+    font-size: 12px;
+    font-weight: bold;
+}
+.user_output_div{
+    width: 300px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding:5px;
+    background-color: black;
+    color: white;
+    min-height: 5px;
+    border-radius: 10px;
+    border: 2px solid black;
+    font-size: 10px;
+}
+.case{
+    font-size: 15px;
+    padding: 5px;
+    border-radius: 5px;
+    font-weight: bold;
+    color: black;
+}
+
+#view_1{
+    display: flex;
+    justify-content: space-between;
+    background-color:whitesmoke ;
+    border: 2px solid black;
+    border-radius: 5px;
+    min-width: 300px;
+}
+.verdict{
+    margin-top: 10px;
+    font-size: 12px;
+    font-weight: bold;
+}
+.details{
+    margin-top: 10px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.input_cont{
+    margin-top: 10px;
+    font-size: 12px;
+    font-weight: bold;
+}
+.output_cont{
+    margin-top: 10px;
+    font-size: 12px;
+    font-weight: bold;
+}
+.input_div{
+    width: 300px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding:5px;
+    background-color: black;
+    color: white;
+    min-height: 5px;
+    border-radius: 10px;
+    border: 2px solid black;
+    font-size: 10px;
+}
+.user_out_div{
+    width: 300px;
+    padding:5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    min-height: 5px;
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    border: 2px solid black;
+    font-size: 10px; 
+}
+.output_div{
+    width: 300px;
+    padding:5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    min-height: 5px;
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    border: 2px solid black;
+    font-size: 10px;
+}
+#functions{
+    display: flex; 
+    padding-top: 10px;
+    justify-content: space-between;
+    align-items: center;
+    width: 300px;
+    
+}
+
+
+.function_button:hover{
+
+    background-color: #e9f2a2;
+}
+
+#upper_conatiner{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px;
+}
+
+.body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,34 +1,82 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
 const vscode = require('vscode');
-
-// This method is called when your extension is activated
-// Your extension is activated the very first time the command is executed
+const { fetch_test_cases , run_test_cases, get_html_content } = require('./main');
 
 /**
  * @param {vscode.ExtensionContext} context
  */
+
+
+
+let activeWebviewView = null;
+
 function activate(context) {
 
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
 	console.log('Congratulations, your extension "cph" is now active!');
 
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with  registerCommand
-	// The commandId parameter must match the command field in package.json
-	const disposable = vscode.commands.registerCommand('cph.helloWorld', function () {
-		// The code you place here will be executed every time your command is executed
+	context.subscriptions.push(vscode.window.registerWebviewViewProvider(
+		'cph_view',
+		{
+            resolveWebviewView(webviewView) {
+				activeWebviewView = webviewView;
+				webviewView.webview.options = {
+					enableScripts: true
+				};
+                webviewView.webview.html = get_html_content(webviewView);
 
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from cph!');
-	});
+				webviewView.webview.onDidReceiveMessage(async (m)=>{
+					if(m.type == 'fetchTestCases'){
+						const url = m.value;
+						
+						const fetchresult = await fetch_test_cases(url);
+						console.log('hii');
+						console.log(fetchresult);
+						webviewView.webview.postMessage(
+							{
+								type:'fetch_result',
+								value:fetchresult
+							}
+						);
+					}
+					else if(m.type =='runTestCases'){
+						run_test_cases(webviewView);
+					}
+				});
+            }
+        },
+		{ webviewOptions: { retainContextWhenHidden: true } }
+	)
+	);
 
-	context.subscriptions.push(disposable);
+	const fetch_command =  vscode.commands.registerCommand('cph.fetchTestCases', 
+		() => {
+			vscode.window.showInputBox({prompt:"Enter LeetCode Question URL"}).then(
+				(url)=>{
+					if(url){
+						fetch_test_cases(url);
+					}
+					else{
+						vscode.window.showErrorMessage("URL cant be empty");
+					}
+				}
+		);
+		}
+	);
+
+	context.subscriptions.push(fetch_command);
+
+	const run_command = vscode.commands.registerCommand('cph.runTestCases',
+		()=>run_test_cases(activeWebviewView)
+	);
+
+	context.subscriptions.push(run_command);
+
+
 }
 
 // This method is called when your extension is deactivated
 function deactivate() {}
+
+
 
 module.exports = {
 	activate,
