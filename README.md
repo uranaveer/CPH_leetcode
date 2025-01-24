@@ -19,10 +19,10 @@ and provides a user-friendly UI to `fetch` and `run` Leetcode problem test cases
 * npm
 
 ## Screenshots
-![UI](Screenshots\1.png "Fetching LeetCode Problems")
-![Fetch Problems](Screenshots\2.png "Fetching LeetCode Problems")
-![Run Test 1](Screenshots\3.png "Fetching LeetCode Problems")
-![Run Test 2](Screenshots\4.png "Fetching LeetCode Problems")
+![UI](Screenshots/1.png)
+![Fetch Problems](Screenshots/2.png)
+![Run Test 1](Screenshots/3.png)
+![Run Test 2](Screenshots/4.png)
 
 ## Installation / Usage Guide.
 
