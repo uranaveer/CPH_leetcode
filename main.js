@@ -91,7 +91,58 @@ async function run_test_cases(webviewView) {
 
             try {
                 const results = JSON.parse(stdout.toString());
-                vscode.window.showInformationMessage(stdout);
+            
+
+                console.log(results);
+                webviewView.webview.postMessage({
+                    type: "run_result",
+                    value: results,
+                });
+
+                resolve(results);
+            } catch (parseError) {
+                vscode.window.showErrorMessage("Failed to parse output.");
+                reject(parseError);
+            }
+        });
+    });
+}
+
+async function run_test_cases_command(webviewView) {
+    const activeEditor = vscode.window.activeTextEditor;
+    if (!activeEditor) {
+        vscode.window.showErrorMessage("Open your program file");
+        return;
+    }
+
+    const python_command = "python";
+    const script_path = path.join(__dirname, "utils/run_and_check.py");
+    const filePath = activeEditor.document.fileName;
+    const lang = path.extname(filePath);
+    const code = activeEditor.document.getText();
+
+    return new Promise((resolve, reject) => {
+        execFile(python_command, [script_path, lang, code], (error, stdout, stderr) => {
+            if (error) {
+                vscode.window.showErrorMessage(`Error: ${error.message}`);
+                return reject(error);
+            }
+            if (stderr) {
+                vscode.window.showErrorMessage(`Stderr: ${stderr}`);
+                return reject(new Error(stderr));
+            }
+
+            try {
+                const results = JSON.parse(stdout.toString());
+                
+                results.forEach((item,index)=>{
+                    if(item.test_passed==1){
+                        vscode.window.showInformationMessage(`Test Case ${index+1} Passed!`)
+                    }
+                    else{
+                        vscode.window.showInformationMessage(`Test Case ${index+1} Failed!`)
+                    }
+                })
 
                 console.log(results);
                 webviewView.webview.postMessage({
@@ -122,4 +173,5 @@ function get_html_content(webviewView){
 
 module.exports = { fetch_test_cases,
                  run_test_cases,
-                get_html_content};
+                get_html_content,
+                run_test_cases_command};

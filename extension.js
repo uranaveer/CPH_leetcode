@@ -1,5 +1,5 @@
 const vscode = require('vscode');
-const { fetch_test_cases , run_test_cases, get_html_content } = require('./main');
+const { fetch_test_cases , run_test_cases, get_html_content, run_test_cases_command } = require('./main');
 
 /**
  * @param {vscode.ExtensionContext} context
@@ -65,7 +65,7 @@ function activate(context) {
 	context.subscriptions.push(fetch_command);
 
 	const run_command = vscode.commands.registerCommand('cph.runTestCases',
-		()=>run_test_cases(activeWebviewView)
+		()=>run_test_cases_command(activeWebviewView)
 	);
 
 	context.subscriptions.push(run_command);
