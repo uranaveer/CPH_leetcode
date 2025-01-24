@@ -30,7 +30,12 @@ and provides a user-friendly UI to `fetch` and `run` Leetcode problem test cases
 * To use through UI, just paste the `question link` and and press `Fetch Test Cases` to fetch test cases and to run press `Run Test Cases`.
 * To use through Vs Code command, press `ctrl + shift + p` and run `Fetch Test Cases`, it will open a input window to url after press `enter` to fetch test cases. And to run test cases press `ctrl + shift + p` and run `Run Test Cases`.
 
+## General Instruction for user
+* Code file must be open for running the code.
+* The inputs must be taken in the order given leetcode.
+* Output must be stdout to terminal each element separated by new line or space.
 
+  
 ## Known Issues.
 
 * The test result validating will might be fail for problems having multiple solutions.
