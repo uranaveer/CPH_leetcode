@@ -12,7 +12,7 @@ def twoSum(nums, target):
     
     return []  # Return an empty list if no solution is found
 
-ggk
+
 if __name__ == "__main__":
     # Input: size of array
     n = int(input())
